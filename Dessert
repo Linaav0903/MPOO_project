@@ -1,0 +1,10 @@
+import UIKit
+
+struct Dessert {
+    let name: String
+    let image: String
+    let price: Double
+    let weight: Int
+    let calories: Int
+    let sweetnessLevel: String
+}
