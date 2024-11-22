@@ -106,5 +106,5 @@ func main() {
     }
 }
 
-// Ejecutar el programa principal
+//Ejecutar
 main()
