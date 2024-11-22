@@ -1,0 +1,108 @@
+import Foundation
+
+struct Dessert {
+    let name: String
+    let price: Double
+    let weight: Int // en gramos
+    let calories: Int
+    let sweetnessLevel: String
+}
+
+//Lista
+let desserts = [
+    Dessert(name: "Cheesecake", price: 108.00, weight: 150, calories: 450, sweetnessLevel: "High"),
+    Dessert(name: "Brownie", price: 72.00, weight: 120, calories: 350, sweetnessLevel: "Medium"),
+    Dessert(name: "Macaron", price: 45.00, weight: 30, calories: 70, sweetnessLevel: "Low"),
+    Dessert(name: "Cupcake de Vainilla", price: 59.40, weight: 90, calories: 290, sweetnessLevel: "Medium"),
+    Dessert(name: "Donut Glaseado", price: 50.40, weight: 80, calories: 250, sweetnessLevel: "High"),
+    Dessert(name: "Galletas con Chispas de Chocolate", price: 57.60, weight: 100, calories: 310, sweetnessLevel: "Medium"),
+    Dessert(name: "Helado de Fresa", price: 81.00, weight: 150, calories: 300, sweetnessLevel: "Low"),
+    Dessert(name: "Pay de Limón", price: 93.60, weight: 180, calories: 350, sweetnessLevel: "Medium"),
+    Dessert(name: "Mousse de Chocolate", price: 104.40, weight: 160, calories: 400, sweetnessLevel: "High"),
+    Dessert(name: "Pan de Plátano", price: 84.60, weight: 140, calories: 330, sweetnessLevel: "Low"),
+    Dessert(name: "Flan Napolitano", price: 72.00, weight: 150, calories: 310, sweetnessLevel: "Medium"),
+    Dessert(name: "Gelatina de Frutas", price: 54.00, weight: 100, calories: 200, sweetnessLevel: "Low"),
+]
+
+// Carrito de compras
+var cart: [Dessert] = []
+
+// Función para mostrar el menú principal
+func showMainMenu() {
+    print("""
+    Bienvenido a la tienda de postres 🍰
+    Selecciona una opción:
+    1. Ver postres disponibles
+    2. Ver carrito de compras
+    3. Salir
+    """)
+}
+
+// Función para mostrar los postres disponibles
+func showDesserts() {
+    print("\nLista de postres disponibles:")
+    for (index, dessert) in desserts.enumerated() {
+        print("\(index + 1). \(dessert.name) - $\(String(format: "%.2f", dessert.price)) MXN")
+    }
+    print("Selecciona un postre para ver detalles o escribe 0 para volver al menú principal.")
+    
+    if let choice = readLine(), let index = Int(choice), index > 0 && index <= desserts.count {
+        showDessertDetails(desserts[index - 1])
+    }
+}
+
+// Detalles
+func showDessertDetails(_ dessert: Dessert) {
+    print("""
+    
+    Detalles de \(dessert.name):
+    Precio: $\(String(format: "%.2f", dessert.price)) MXN
+    Peso: \(dessert.weight) g
+    Calorías: \(dessert.calories) kcal
+    Nivel de dulzura: \(dessert.sweetnessLevel)
+    """)
+    print("¿Quieres agregar este postre al carrito? (sí/no)")
+    
+    if let choice = readLine()?.lowercased(), choice == "sí" {
+        cart.append(dessert)
+        print("\(dessert.name) ha sido agregado al carrito 🛒.")
+    }
+}
+
+//Carrito
+func showCart() {
+    if cart.isEmpty {
+        print("\nTu carrito está vacío.")
+    } else {
+        print("\nCarrito de compras:")
+        for (index, dessert) in cart.enumerated() {
+            print("\(index + 1). \(dessert.name) - $\(String(format: "%.2f", dessert.price)) MXN")
+        }
+        let total = cart.reduce(0) { $0 + $1.price }
+        print("Total: $\(String(format: "%.2f", total)) MXN")
+    }
+}
+
+//Principal
+func main() {
+    var isRunning = true
+    while isRunning {
+        showMainMenu()
+        if let choice = readLine() {
+            switch choice {
+            case "1":
+                showDesserts()
+            case "2":
+                showCart()
+            case "3":
+                print("¡Gracias por visitar nuestra tienda de postres! 🍩")
+                isRunning = false
+            default:
+                print("Por favor, selecciona una opción válida.")
+            }
+        }
+    }
+}
+
+// Ejecutar el programa principal
+main()
