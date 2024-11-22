@@ -1,3 +1,5 @@
+//Sin simulador, funciona en terminal
+
 import Foundation
 
 struct Dessert {
