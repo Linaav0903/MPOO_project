@@ -26,7 +26,7 @@ let desserts = [
     Dessert(name: "Gelatina de Frutas", price: 54.00, weight: 100, calories: 200, sweetnessLevel: "Low"),
 ]
 
-// Carrito de compras
+//Carrito
 var cart: [Dessert] = []
 
 // Función para mostrar el menú principal
@@ -40,7 +40,7 @@ func showMainMenu() {
     """)
 }
 
-// Función para mostrar los postres disponibles
+//Mostrar los postres
 func showDesserts() {
     print("\nLista de postres disponibles:")
     for (index, dessert) in desserts.enumerated() {
@@ -53,7 +53,7 @@ func showDesserts() {
     }
 }
 
-// Detalles
+//Detalles
 func showDessertDetails(_ dessert: Dessert) {
     print("""
     
@@ -71,7 +71,7 @@ func showDessertDetails(_ dessert: Dessert) {
     }
 }
 
-//Carrito
+//Carrito 
 func showCart() {
     if cart.isEmpty {
         print("\nTu carrito está vacío.")
